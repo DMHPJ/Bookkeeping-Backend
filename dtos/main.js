@@ -13,7 +13,13 @@ const basicGetDetail = async (sql, sqlArr) => {
   return { code: 200, data: sqlRes[0], type: "success", msg: "获取成功" };
 };
 
+const basicUpdate = async (sql, sqlArr) => { 
+  const sqlRes = await dbconfig.promiseSqlConnect(sql, sqlArr);
+  return { code: 200, data: null, type: "success", msg: "成功" };
+};
+
 module.exports = {
   basicGetList,
-  basicGetDetail
+  basicGetDetail,
+  basicUpdate
 }

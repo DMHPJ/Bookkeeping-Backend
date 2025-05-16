@@ -56,7 +56,7 @@ module.exports = {
 					if (err) {
 						reject(err);
 					} else {
-						data = formatData(data);
+						if(Array.isArray(data)) data = formatData(data);
 						resolve(data);
 					}
 				});

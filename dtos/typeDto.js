@@ -1,3 +1,5 @@
+const moment = require("moment-timezone");
+const uuid = require("../utils/uuid");
 const basicDto = require("./main");
 
 // 获取全部收支类型
@@ -27,6 +29,41 @@ const getAllTypeDto = async () => {
 	return res;
 };
 
+// 新增收支类型
+const addTypeDto = async (params) => {
+	const sql =
+		"INSERT INTO `flutter`.`flutter_type` (`id`, `parent_id`, `icon`, `is_income`, `name`, `create_time`, `update_time`, `is_delete`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+	params.id = uuid.generateUUID();
+	params.parentId = null;
+	params.createTime = moment().tz("Asia/Shanghai").format("YYYY-MM-DD HH:mm:ss");
+	params.updateTime = moment().tz("Asia/Shanghai").format("YYYY-MM-DD HH:mm:ss");
+	params.isDelete = 0;
+	const sqlArr = [
+		params.id,
+		params.parentId,
+		params.icon,
+		params.isIncome,
+		params.name,
+		params.createTime,
+		params.updateTime,
+		params.isDelete,
+	];
+	const res = await basicDto.basicUpdate(sql, sqlArr);
+	return res;
+};
+
+// 修改收支类型
+const updateTypeDto = async (params) => {
+	const sql =
+		"UPDATE `flutter`.`flutter_type` SET `icon` = ?, `name` = ?, `is_income` = ?,`update_time` = ? WHERE (`id` = ?)";
+	params.updateTime = moment().tz("Asia/Shanghai").format("YYYY-MM-DD HH:mm:ss");
+	const sqlArr = [params.icon, params.name, params.isIncome, params.updateTime, params.id];
+	const res = await basicDto.basicUpdate(sql, sqlArr);
+	return res;
+};
+
 module.exports = {
 	getAllTypeDto,
+	addTypeDto,
+	updateTypeDto
 };
