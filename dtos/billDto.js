@@ -43,4 +43,5 @@ module.exports = {
 	getBillMainInfoDto,
 	getBillChrListDto,
 	getWalletListDto,
+	testService
 };

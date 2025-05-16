@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const routes = require("./routes");
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3900;
 
 // 中间件
 app.use(express.json());
