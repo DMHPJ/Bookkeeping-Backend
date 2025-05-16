@@ -37,11 +37,8 @@ const getBillMainInfoDto = async () => {
 	return mainRes;
 };
 
-const testService = async () => {}
-
 module.exports = {
 	getBillMainInfoDto,
 	getBillChrListDto,
 	getWalletListDto,
-	testService
 };
