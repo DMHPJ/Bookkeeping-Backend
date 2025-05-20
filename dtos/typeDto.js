@@ -34,7 +34,8 @@ const addTypeDto = async (params) => {
 	const sql =
 		"INSERT INTO `flutter`.`flutter_type` (`id`, `parent_id`, `icon`, `is_income`, `name`, `create_time`, `update_time`, `is_delete`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 	params.id = uuid.generateUUID();
-	params.parentId = null;
+	params.parentId = params.parentId ?? null;
+	params.icon = params.name.split("")[0];
 	params.createTime = moment().tz("Asia/Shanghai").format("YYYY-MM-DD HH:mm:ss");
 	params.updateTime = moment().tz("Asia/Shanghai").format("YYYY-MM-DD HH:mm:ss");
 	params.isDelete = 0;
