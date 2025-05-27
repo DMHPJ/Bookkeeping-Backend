@@ -1,7 +1,8 @@
 const typeDto = require("../dtos/typeDto");
 
-const getAllType = async (req, res) => {
-  const sqlRes = await typeDto.getAllTypeDto();
+const getTypeList = async (req, res) => {
+  const params = req.body;
+  const sqlRes = await typeDto.getTypeListDto(params);
   res.send(sqlRes);
 };
 
@@ -23,7 +24,7 @@ const updateType = async (req, res) => {
 };
 
 module.exports = {
-	getAllType,
+	getTypeList,
   addType,
   updateType
 };

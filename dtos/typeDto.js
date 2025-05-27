@@ -3,9 +3,9 @@ const uuid = require("../utils/uuid");
 const basicDto = require("./main");
 
 // 获取全部收支类型
-const getAllTypeDto = async () => {
-	const sql = "select * from flutter_type where is_delete=0";
-	const sqlArr = [];
+const getTypeListDto = async (params) => {
+	const sql = "select * from flutter_type where is_delete=0 and is_income=?";
+	const sqlArr = [params.isIncome];
 	const res = await basicDto.basicGetList(sql, sqlArr);
 
 	const parentList = res.data.filter((item) => !item.parentId);
@@ -68,7 +68,7 @@ const updateTypeDto = async (params) => {
 };
 
 module.exports = {
-	getAllTypeDto,
+	getTypeListDto,
 	addTypeDto,
 	updateTypeDto
 };
