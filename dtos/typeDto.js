@@ -32,9 +32,11 @@ const getAllTypeDto = async () => {
 // 新增收支类型
 const addTypeDto = async (params) => {
 	const sql =
-		"INSERT INTO `flutter`.`flutter_type` (`id`, `parent_id`, `icon`, `is_income`, `name`, `create_time`, `update_time`, `is_delete`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+		"INSERT INTO `flutter`.`flutter_type` (`id`, `parent_id`, `parent_name`, `parent_icon`, `icon`, `is_income`, `name`, `create_time`, `update_time`, `is_delete`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 	params.id = uuid.generateUUID();
 	params.parentId = params.parentId ?? null;
+	params.parentName = params.parentName ?? null;
+	params.parentIcon = params.parentIcon ?? null;
 	params.icon = params.name.split("")[0];
 	params.createTime = moment().tz("Asia/Shanghai").format("YYYY-MM-DD HH:mm:ss");
 	params.updateTime = moment().tz("Asia/Shanghai").format("YYYY-MM-DD HH:mm:ss");
@@ -42,6 +44,8 @@ const addTypeDto = async (params) => {
 	const sqlArr = [
 		params.id,
 		params.parentId,
+		params.parentName,
+		params.parentIcon,
 		params.icon,
 		params.isIncome,
 		params.name,
