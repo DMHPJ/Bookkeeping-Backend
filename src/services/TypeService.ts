@@ -16,7 +16,7 @@ export class TypeService {
     return await this.typeRepository.addType(typeData);
   }
 
-  async updateType(id: number, typeData: Partial<Type>): Promise<Type | null> {
+  async updateType(id: string, typeData: Partial<Type>): Promise<Type | null> {
     return await this.typeRepository.updateType(id, typeData);
   }
 } 

@@ -1,35 +1,18 @@
 import { Repository } from 'typeorm';
-import { BillChr } from '../entities/billChrEntities';
+import { Bill } from '../entities/billEntities';
 import { AppDataSource } from '../app';
 
 export class BillRepository {
-  private repository: Repository<BillChr>;
+  private repository: Repository<Bill>;
 
   constructor() {
-    this.repository = AppDataSource.getRepository(BillChr);
+    this.repository = AppDataSource.getRepository(Bill);
   }
 
-  async getBillChrList(params: any): Promise<any> {
+  async getBillInfo(params: any): Promise<any> {
     // 实现账单列表查询逻辑
-    return await this.repository.find({
+    return await this.repository.findOne({
       where: {...params, isDelete: 0},
-      order: { owningDate: 'ASC' }
-    });
-  }
-
-  async getWalletList(params: any): Promise<any> {
-    // 实现钱包列表查询逻辑
-    return await this.repository.find({
-      where: {...params, isDelete: 0},
-      order: { createTime: 'DESC' }
-    });
-  }
-
-  async getBillMainInfo(): Promise<any> {
-    // 实现账单主要信息查询逻辑
-    return await this.repository.find({
-      order: { createTime: 'DESC' },
-      take: 10
     });
   }
 } 

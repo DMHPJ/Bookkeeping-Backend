@@ -1,4 +1,4 @@
-import { BillRepository } from '../repositories/BillRepository';
+import { BillRepository } from '../repositories/billRepository';
 
 export class BillService {
   private billRepository: BillRepository;
@@ -7,15 +7,7 @@ export class BillService {
     this.billRepository = new BillRepository();
   }
 
-  async getBillChrList(params: any): Promise<any> {
-    return await this.billRepository.getBillChrList(params);
-  }
-
-  async getWalletList(params: any): Promise<any> {
-    return await this.billRepository.getWalletList(params);
-  }
-
-  async getBillMainInfo(): Promise<any> {
-    return await this.billRepository.getBillMainInfo();
+  async getBillInfo(params: any): Promise<any> {
+    return await this.billRepository.getBillInfo(params);
   }
 } 
