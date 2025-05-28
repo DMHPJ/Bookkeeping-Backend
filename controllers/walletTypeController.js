@@ -1,4 +1,4 @@
-const walletTypeDto = require("../dtos/walletTypeDto");
+const walletTypeDto = require("../services/walletTypeDto");
 
 const getWalletTypeList = async (req, res) => {
   const params = req.body;

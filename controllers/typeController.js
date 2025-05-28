@@ -1,4 +1,4 @@
-const typeDto = require("../dtos/typeDto");
+const typeDto = require("../services/typeDto");
 
 const getTypeList = async (req, res) => {
   const params = req.body;

@@ -1,4 +1,4 @@
-const billDto = require("../dtos/billDto");
+const billDto = require("../services/billDto");
 
 const getBillChrList = async (req, res) => {
 	const params = req.body;
