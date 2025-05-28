@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { BillService } from '../services/BillService';
-import { ResponseUtil } from '../utils/ResponseUtil';
+import { BillService } from '../services/billService';
+import { ResponseUtil } from '../utils/responseUtil';
 
 export class BillController {
   private billService: BillService;

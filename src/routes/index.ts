@@ -1,7 +1,7 @@
 import { Express } from 'express';
-import { BillController } from '../controllers/BillController';
-import { TypeController } from '../controllers/TypeController';
-import { WalletTypeController } from '../controllers/WalletTypeController';
+import { BillController } from '../controllers/billController';
+import { TypeController } from '../controllers/typeController';
+import { WalletTypeController } from '../controllers/walletTypeController';
 
 export const routes = (app: Express) => {
   const billController = new BillController();

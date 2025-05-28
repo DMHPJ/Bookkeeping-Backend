@@ -1,5 +1,5 @@
-import { WalletTypeRepository } from '../repositories/WalletTypeRepository';
-import { WalletType } from '../entities/WalletType';
+import { WalletTypeRepository } from '../repositories/walletTypeRepository';
+import { WalletType } from '../entities/walletTypeEntities';
 
 export class WalletTypeService {
   private walletTypeRepository: WalletTypeRepository;

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { WalletTypeService } from '../services/WalletTypeService';
-import { ResponseUtil } from '../utils/ResponseUtil';
+import { WalletTypeService } from '../services/walletTypeService';
+import { ResponseUtil } from '../utils/responseUtil';
 
 export class WalletTypeController {
   private walletTypeService: WalletTypeService;

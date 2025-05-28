@@ -1,5 +1,5 @@
-import { TypeRepository } from '../repositories/TypeRepository';
-import { Type } from '../entities/Type';
+import { TypeRepository } from '../repositories/typeRepository';
+import { Type } from '../entities/typeEntities';
 
 export class TypeService {
   private typeRepository: TypeRepository;

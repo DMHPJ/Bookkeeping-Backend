@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { BillChr } from '../entities/BillChr';
+import { BillChr } from '../entities/billChrEntities';
 import { AppDataSource } from '../app';
 
 export class BillRepository {

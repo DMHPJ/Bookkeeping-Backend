@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { Type } from '../entities/Type';
+import { Type } from '../entities/typeEntities';
 import { AppDataSource } from '../app';
 
 export class TypeRepository {
@@ -12,7 +12,7 @@ export class TypeRepository {
   async getTypeList(params: any): Promise<Type[]> {
     return await this.repository.find({
       where: params,
-      order: { createdAt: 'DESC' }
+      order: { createTime: 'DESC' }
     });
   }
 
@@ -21,7 +21,7 @@ export class TypeRepository {
     return await this.repository.save(type);
   }
 
-  async updateType(id: number, typeData: Partial<Type>): Promise<Type | null> {
+  async updateType(id: string, typeData: Partial<Type>): Promise<Type | null> {
     await this.repository.update(id, typeData);
     return await this.repository.findOne({ where: { id } });
   }
