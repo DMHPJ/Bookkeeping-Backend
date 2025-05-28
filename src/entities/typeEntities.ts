@@ -31,4 +31,6 @@ export class Type {
 
 	@UpdateDateColumn({ name: "update_time", type: "datetime", comment: "更新时间" })
 	updateTime!: Date;
+
+  children?: Type[];
 }

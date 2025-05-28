@@ -11,8 +11,8 @@ export class WalletTypeRepository {
 
   async getWalletTypeList(params: any): Promise<WalletType[]> {
     return await this.repository.find({
-      where: params,
-      order: { createdAt: 'DESC' }
+      where: {...params, isDelete: 0},
+      order: { type: 'ASC' }
     });
   }
 } 
