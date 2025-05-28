@@ -24,7 +24,7 @@ export class WalletType {
 	type?: number;
 
 	@Column({
-		name: "type",
+		name: "asset_type",
 		type: "tinyint",
 		nullable: true,
 		comment: "资产类型0:资金/1:投资/2:应收/3:应付",
@@ -32,7 +32,7 @@ export class WalletType {
 	assetType?: number;
 
 	@Column({
-		name: "type",
+		name: "is_liabilities",
 		type: "tinyint",
 		nullable: true,
 		comment: "是否为负债0:资产/1:负债",

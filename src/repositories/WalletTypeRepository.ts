@@ -10,9 +10,10 @@ export class WalletTypeRepository {
   }
 
   async getWalletTypeList(params: any): Promise<WalletType[]> {
+    console.log(params)
     return await this.repository.find({
       where: {...params, isDelete: 0},
-      order: { type: 'ASC' }
+      order: { type: 'ASC' },
     });
   }
 } 

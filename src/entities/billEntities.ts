@@ -22,7 +22,7 @@ export class Bill {
 		nullable: true,
 		comment: "总资产",
 	})
-	totalAsset?: number;
+	totalAsset?: string;
 
   @Column({
 		name: "net_asset",
@@ -32,7 +32,7 @@ export class Bill {
 		nullable: true,
 		comment: "净资产",
 	})
-	netAsset?: number;
+	netAsset?: string;
 
   @Column({
 		name: "total_liability",
@@ -42,7 +42,7 @@ export class Bill {
 		nullable: true,
 		comment: "总负债",
 	})
-	totalLiability?: number;
+	totalLiability?: string;
 
   @Column({
 		name: "monthly_expense",
@@ -52,7 +52,7 @@ export class Bill {
 		nullable: true,
 		comment: "月支出",
 	})
-	monthlyExpense?: number;
+	monthlyExpense?: string;
 
   @Column({
 		name: "monthly_income",
@@ -62,7 +62,7 @@ export class Bill {
 		nullable: true,
 		comment: "月收入",
 	})
-	monthlyIncome?: number;
+	monthlyIncome?: string;
 
   @Column({
 		name: "monthly_balance",
@@ -72,7 +72,7 @@ export class Bill {
 		nullable: true,
 		comment: "月结余",
 	})
-	monthlyBalance?: number;
+	monthlyBalance?: string;
 
   @Column({ name: "is_delete", type: "tinyint", comment: "软删除" })
 	isDelete!: number;

@@ -42,7 +42,7 @@ export class Wallet {
 		nullable: true,
 		comment: "资产金额",
 	})
-	walletAmount?: number;
+	walletAmount?: string;
 
 	@Column({ name: "is_delete", type: "tinyint", comment: "软删除" })
 	isDelete!: number;
