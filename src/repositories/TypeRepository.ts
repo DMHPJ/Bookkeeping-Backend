@@ -10,8 +10,6 @@ export class TypeRepository {
 	}
 
 	async getTypeList(params: any): Promise<Type[]> {
-		console.log(params);
-
 		return await this.repository.find({
 			where: { isIncome: params.isIncome, isDelete: 0 },
 			order: { createTime: "DESC" },

@@ -23,6 +23,9 @@ export class WalletType {
 	})
 	type?: number;
 
+	@Column({ name: "icon", type: "varchar", nullable: true, comment: "图标" })
+	icon?: string;
+
 	@Column({
 		name: "asset_type",
 		type: "tinyint",
@@ -39,7 +42,7 @@ export class WalletType {
 	})
 	isLiabilities?: number;
 
-  @Column({ name: "is_delete", type: "tinyint", comment: "软删除" })
+	@Column({ name: "is_delete", type: "tinyint", comment: "软删除" })
 	isDelete!: number;
 
 	@CreateDateColumn({ name: "create_time", type: "datetime", comment: "创建时间" })
