@@ -7,7 +7,7 @@ export const config: DataSourceOptions = {
   username: process.env.DB_USER || 'flutter',
   password: process.env.DB_PASSWORD || 'DSnm9512357',
   database: process.env.DB_NAME || 'flutter',
-  entities: ['src/entities/**/*.ts'],
+  entities: ['src/entities/**/*'],
   // process.env.NODE_ENV !== 'production'
   synchronize: false,
   logging: process.env.NODE_ENV !== 'production',
