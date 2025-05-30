@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { WalletTypeController } from "../controllers/walletTypeController";
+import { WalletTypeController } from "@/controllers/walletTypeController";
 
 export const getWalletTypeRoutes = () => {
   const walletTypeController = new WalletTypeController();

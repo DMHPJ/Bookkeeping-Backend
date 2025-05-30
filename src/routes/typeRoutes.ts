@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { TypeController } from "../controllers/typeController";
+import { TypeController } from "@/controllers/typeController";
 
 export const getTypeRoutes = () => {
 	const typeController = new TypeController();

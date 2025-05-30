@@ -1,6 +1,6 @@
-import { BillChrRepository } from "../repositories/billChrRepository";
-import { BillRepository } from "../repositories/billRepository";
-import { WalletRepository } from "../repositories/walletRepository";
+import { BillChrRepository } from "@/repositories/billChrRepository";
+import { BillRepository } from "@/repositories/billRepository";
+import { WalletRepository } from "@/repositories/walletRepository";
 
 export class BillService {
 	private billRepository: BillRepository;

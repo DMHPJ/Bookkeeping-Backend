@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { BillChrController } from "../controllers/billChrController";
+import { BillChrController } from "@/controllers/billChrController";
 
 export const getBillChrRoutes = () => {
 	const billChrController = new BillChrController();

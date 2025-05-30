@@ -1,6 +1,6 @@
 import { Repository } from 'typeorm';
-import { BillChr } from '../entities/billChrEntities';
-import { AppDataSource } from '../app';
+import { BillChr } from '@/entities/billChrEntities';
+import { AppDataSource } from '@/app';
 
 export class BillChrRepository {
   private repository: Repository<BillChr>;

@@ -1,4 +1,4 @@
-import { WalletRepository } from '../repositories/walletRepository';
+import { WalletRepository } from '@/repositories/walletRepository';
 
 export class WalletService {
   private walletRepository: WalletRepository;

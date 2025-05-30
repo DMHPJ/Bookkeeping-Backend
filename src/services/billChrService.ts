@@ -1,4 +1,4 @@
-import { BillChrRepository } from '../repositories/billChrRepository';
+import { BillChrRepository } from '@/repositories/billChrRepository';
 
 export class BillChrService {
   private billChrRepository: BillChrRepository;

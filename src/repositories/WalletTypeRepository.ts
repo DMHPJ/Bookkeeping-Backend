@@ -1,6 +1,6 @@
 import { Repository } from 'typeorm';
-import { WalletType } from '../entities/walletTypeEntities';
-import { AppDataSource } from '../app';
+import { WalletType } from '@/entities/walletTypeEntities';
+import { AppDataSource } from '@/app';
 
 export class WalletTypeRepository {
   private repository: Repository<WalletType>;

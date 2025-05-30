@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { TypeService } from "../services/typeService";
-import { ResponseUtil } from "../utils/responseUtil";
+import { TypeService } from "@/services/typeService";
+import { ResponseUtil } from "@/utils/responseUtil";
 
 export class TypeController {
 	private typeService: TypeService;

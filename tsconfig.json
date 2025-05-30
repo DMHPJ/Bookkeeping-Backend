@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2018",
+    "target": "ES2024",
     "module": "commonjs",
     "outDir": "./dist",
     "rootDir": "./src",
@@ -11,8 +11,12 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*.ts", "src", "src/typings/*.d.ts"],
   "exclude": ["node_modules", "dist"]
 } 

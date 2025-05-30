@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { BillChrService } from '../services/billChrService';
-import { ResponseUtil } from '../utils/responseUtil';
+import { BillChrService } from '@/services/billChrService';
+import { ResponseUtil } from '@/utils/responseUtil';
 
 export class BillChrController {
   private billChrService: BillChrService;

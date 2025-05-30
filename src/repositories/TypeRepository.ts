@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
-import { Type } from "../entities/typeEntities";
-import { AppDataSource } from "../app";
+import { Type } from "@/entities/typeEntities";
+import { AppDataSource } from "@/app";
 
 export class TypeRepository {
 	private repository: Repository<Type>;
