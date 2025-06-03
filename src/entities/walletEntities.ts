@@ -31,6 +31,14 @@ export class Wallet {
 	})
 	walletTypeName?: string;
 
+	@Column({
+		name: "wallet_type_icon",
+		type: "varchar",
+		nullable: true,
+		comment: "资产钱包类型图标",
+	})
+	walletTypeIcon?: string;
+
 	@Column({ name: "wallet_name", type: "varchar", nullable: true, comment: "资产名称" })
 	walletName?: string;
 
