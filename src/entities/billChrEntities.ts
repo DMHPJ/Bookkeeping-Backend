@@ -11,7 +11,7 @@ export class BillChr {
 	@PrimaryGeneratedColumn("uuid", { name: "id" })
 	id!: string;
 
-	@Column({ name: "bill_id", type: "varchar", comment: "主表id" })
+	@Column({ name: "bill_id", type: "varchar", length: 36, comment: "租户id" })
 	billId!: string;
 
 	@Column({ name: "icon", type: "varchar", nullable: true, comment: "图标" })

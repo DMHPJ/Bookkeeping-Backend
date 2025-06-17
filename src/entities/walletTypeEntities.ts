@@ -11,6 +11,9 @@ export class WalletType {
 	@PrimaryGeneratedColumn("uuid", { name: "id" })
 	id!: string;
 
+	@Column({ name: "bill_id", type: "varchar", length: 36, comment: "租户id" })
+	billId!: string;
+
 	@Column({ name: "name", type: "varchar", nullable: true, comment: "钱包类型名称" })
 	name?: string;
 

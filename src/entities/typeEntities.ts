@@ -12,6 +12,9 @@ export class Type {
   @PrimaryGeneratedColumn("uuid", { name: "id" })
 	id?: string;
 
+  @Column({ name: "bill_id", type: "varchar", length: 36, comment: "租户id" })
+	billId!: string;
+
   @Column({ name: "parent_id", type: "varchar", length: 36, nullable: true, comment: "父结点id" })
   parentId?: string;
 
