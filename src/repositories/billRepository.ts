@@ -9,7 +9,7 @@ export class BillRepository {
     this.repository = AppDataSource.getRepository(Bill);
   }
 
-  async getBillInfo(params: any): Promise<any> {
+  getBillInfo = async (params: any): Promise<any> => {
     // 实现账单列表查询逻辑
     return await this.repository.findOne({
       where: {...params, isDelete: 0},

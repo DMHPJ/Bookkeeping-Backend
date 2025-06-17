@@ -9,7 +9,7 @@ export class BillController {
 		this.billService = new BillService();
 	}
 
-	async getBillInfo(req: Request, res: Response): Promise<void> {
+	getBillInfo = async (req: Request, res: Response): Promise<void> => {
 		try {
 			const result = await this.billService.getBillInfo(req.body);
 			res.json(ResponseUtil.success(result, "获取主账单成功"));

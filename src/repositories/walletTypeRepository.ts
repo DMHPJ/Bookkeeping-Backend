@@ -9,7 +9,7 @@ export class WalletTypeRepository {
     this.repository = AppDataSource.getRepository(WalletType);
   }
 
-  async getWalletTypeList(params: any): Promise<WalletType[]> {
+  getWalletTypeList = async (params: any): Promise<WalletType[]> => {
     console.log(params)
     return await this.repository.find({
       where: {...params, isDelete: 0},

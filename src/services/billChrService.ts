@@ -7,7 +7,7 @@ export class BillChrService {
     this.billChrRepository = new BillChrRepository();
   }
 
-  async getBillChrList(params: any): Promise<any> {
+  getBillChrList = async (params: any): Promise<any> => {
     return await this.billChrRepository.getBillChrList(params);
   }
 } 

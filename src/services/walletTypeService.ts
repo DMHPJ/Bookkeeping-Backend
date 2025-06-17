@@ -8,7 +8,7 @@ export class WalletTypeService {
     this.walletTypeRepository = new WalletTypeRepository();
   }
 
-  async getWalletTypeList(params: any): Promise<WalletType[]> {
+  getWalletTypeList = async (params: any): Promise<WalletType[]> => {
     return await this.walletTypeRepository.getWalletTypeList(params);
   }
 } 

@@ -9,7 +9,7 @@ export class BillChrRepository {
     this.repository = AppDataSource.getRepository(BillChr);
   }
 
-  async getBillChrList(params: any): Promise<any> {
+  getBillChrList = async (params: any): Promise<any> => {
     // 实现账单列表查询逻辑
     return await this.repository.find({
       where: {...params, isDelete: 0},

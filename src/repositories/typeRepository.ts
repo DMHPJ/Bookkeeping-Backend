@@ -9,19 +9,19 @@ export class TypeRepository {
 		this.repository = AppDataSource.getRepository(Type);
 	}
 
-	async getTypeList(params: any): Promise<Type[]> {
+	getTypeList = async (params: any): Promise<Type[]> => {
 		return await this.repository.find({
 			where: { isIncome: params.isIncome, isDelete: 0 },
 			order: { createTime: "DESC" },
 		});
 	}
 
-	async addType(typeData: Partial<Type>): Promise<Type> {
+	addType = async (typeData: Partial<Type>): Promise<Type> => {
 		const type = this.repository.create(typeData);
 		return await this.repository.save(type);
 	}
 
-	async updateType(id: string, typeData: Partial<Type>): Promise<Type | null> {
+	updateType = async (id: string, typeData: Partial<Type>): Promise<Type | null> => {
 		await this.repository.update(id, typeData);
 		return await this.repository.findOne({ where: { id } });
 	}

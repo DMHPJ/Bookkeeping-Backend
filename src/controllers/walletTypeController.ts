@@ -9,7 +9,7 @@ export class WalletTypeController {
     this.walletTypeService = new WalletTypeService();
   }
 
-  async getWalletTypeList(req: Request, res: Response): Promise<void> {
+  getWalletTypeList = async (req: Request, res: Response): Promise<void> => {
     try {
       const result = await this.walletTypeService.getWalletTypeList(req.body);
       res.json(ResponseUtil.success(result, '获取钱包类型列表成功'));

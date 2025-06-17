@@ -8,7 +8,7 @@ export class TypeService {
 		this.typeRepository = new TypeRepository();
 	}
 
-	async getTypeList(params: any): Promise<Type[]> {
+	getTypeList = async (params: any): Promise<Type[]> => {
 		const res = await this.typeRepository.getTypeList(params);
 
 		const parentList = res.filter((item) => !item.parentId);
@@ -29,11 +29,11 @@ export class TypeService {
 		});
 	}
 
-	async addType(typeData: Partial<Type>): Promise<Type> {
+	addType = async (typeData: Partial<Type>): Promise<Type> => {
 		return await this.typeRepository.addType(typeData);
 	}
 
-	async updateType(typeData: Partial<Type>): Promise<Type | null> {
+	updateType = async (typeData: Partial<Type>): Promise<Type | null> => {
 		return await this.typeRepository.updateType(typeData.id!, typeData);
 	}
 }

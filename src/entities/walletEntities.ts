@@ -52,6 +52,12 @@ export class Wallet {
 	})
 	walletAmount?: string;
 
+	@Column({ name: "show_wallet", type: "tinyint", comment: "是否展示该资产 0:否/1:是" })
+	showWallet!: number;
+
+	@Column({ name: "add_calculate", type: "tinyint", comment: "是否参与总资产计算 0:否/1:是" })
+	addCalculate!: number;
+
 	@Column({ name: "is_delete", type: "tinyint", comment: "软删除" })
 	isDelete!: number;
 

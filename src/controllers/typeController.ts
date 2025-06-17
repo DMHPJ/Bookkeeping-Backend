@@ -9,7 +9,7 @@ export class TypeController {
 		this.typeService = new TypeService();
 	}
 
-	async getTypeList(req: Request, res: Response): Promise<void> {
+	getTypeList = async (req: Request, res: Response): Promise<void> => {
 		try {
 			const result = await this.typeService.getTypeList(req.body);
 			res.json(ResponseUtil.success(result, "获取类型列表成功"));
@@ -18,7 +18,7 @@ export class TypeController {
 		}
 	}
 
-	async addUpdateType(req: Request, res: Response): Promise<void> {
+	addUpdateType = async (req: Request, res: Response): Promise<void> => {
 		try {
 			let func = null;
 			if (req.body.id === null) func = this.typeService.addType;

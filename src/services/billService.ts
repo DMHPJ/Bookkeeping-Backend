@@ -13,7 +13,7 @@ export class BillService {
 		this.walletRepository = new WalletRepository();
 	}
 
-	async getBillInfo(params: any): Promise<any> {
+	getBillInfo = async (params: any): Promise<any> => {
 		const mainRes = await this.billRepository.getBillInfo(params);
 		if (!mainRes.id) throw new Error("账单不存在");
 		await Promise.all([

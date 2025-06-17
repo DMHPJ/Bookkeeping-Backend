@@ -9,7 +9,7 @@ export class BillChrController {
     this.billChrService = new BillChrService();
   }
 
-  async getBillChrList(req: Request, res: Response): Promise<void> {
+  getBillChrList = async (req: Request, res: Response): Promise<void> => {
     try {
       console.log(req.body);
       const result = await this.billChrService.getBillChrList(req.body);
