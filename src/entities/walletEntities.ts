@@ -4,12 +4,20 @@ import {
 	Column,
 	CreateDateColumn,
 	UpdateDateColumn,
+	BeforeInsert,
 } from "typeorm";
+import { uuid } from "uuidv4";
 
 @Entity("flutter_wallet")
 export class Wallet {
+	@BeforeInsert()
+  generate() {
+    if(!this.id) this.id = uuid();
+		if(!this.isDelete) this.isDelete = 0;
+  }
+
 	@PrimaryGeneratedColumn("uuid", { name: "id" })
-	id!: string;
+	id?: string;
 
 	@Column({ name: "bill_id", type: "varchar", comment: "主表id" })
 	billId!: string;

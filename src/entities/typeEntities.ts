@@ -1,9 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BeforeInsert } from 'typeorm';
+import { uuid } from 'uuidv4';
 
 @Entity('flutter_type')
 export class Type {
+  @BeforeInsert()
+  generateId() {
+    if(!this.id) this.id = uuid();
+		if(!this.isDelete) this.isDelete = 0;
+  }
+
   @PrimaryGeneratedColumn("uuid", { name: "id" })
-	id!: string;
+	id?: string;
 
   @Column({ name: "parent_id", type: "varchar", length: 36, nullable: true, comment: "父结点id" })
   parentId?: string;
