@@ -48,4 +48,13 @@ export class ResponseUtil {
       msg
     };
   }
+
+  static unLogin(msg: string, data: any = null): ResponseData {
+    return {
+      code: 401,
+      data,
+      type: ResponseType.ERROR,
+      msg
+    };
+  }
 } 
