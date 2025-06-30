@@ -6,23 +6,31 @@ import { JWTUtils } from "../utils/jwtUtils";
 import { AuthenticatedRequest } from "../middleware/authMiddleware";
 import { ResponseUtil } from "@/utils/responseUtil";
 import { uuid } from "uuidv4";
+import { Bill } from "@/entities/billEntities";
 
 const toRegister = async (username: string, password: string) => {
 	try {
 		const userRepo = AppDataSource.getRepository(User);
+		const billRepo = AppDataSource.getRepository(Bill);
 		// 加密密码
 		const hashedPassword = PasswordUtils.hashPassword(password);
 
 		// 创建新用户
 		const newUser = userRepo.create({
 			id: uuid(),
-			billId: uuid(),
 			username,
 			password: hashedPassword,
 			nickname: username,
 			isDelete: 0,
 		});
 		const savedUser = await userRepo.save(newUser);
+		// 创建账单主表
+		const newBill = billRepo.create({
+			id: uuid(),
+			userId: savedUser.id,
+			isDelete: 0,
+		});
+		await billRepo.save(newBill);
 
 		// 生成token
 		const token = JWTUtils.generateToken({ id: savedUser.id, username: savedUser.username });

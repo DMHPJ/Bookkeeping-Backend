@@ -11,8 +11,8 @@ export class Bill {
   @PrimaryGeneratedColumn("uuid", { name: "id" })
 	id!: string;
 
-  @Column({ name: "tenant", type: "varchar", comment: "租户" })
-	tenant!: string;
+  @Column({ name: "user_id", type: "varchar", comment: "用户id" })
+	userId!: string;
 
   @Column({
 		name: "total_asset",

@@ -8,7 +8,7 @@ import {
 } from "typeorm";
 import { uuid } from "uuidv4";
 
-@Entity("users")
+@Entity("flutter_user")
 export class User {
 	@BeforeInsert()
 	generate() {
@@ -18,9 +18,6 @@ export class User {
 
 	@PrimaryGeneratedColumn("uuid", { name: "id" })
 	id!: string;
-
-	@Column({ name: "bill_id", type: "varchar", length: 36, comment: "租户id" })
-	billId!: string;
 
 	@Column({ unique: true, length: 50 })
 	username!: string;
