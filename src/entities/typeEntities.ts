@@ -1,12 +1,35 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BeforeInsert } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BeforeInsert, BeforeUpdate } from 'typeorm';
 import { uuid } from 'uuidv4';
+
+// 定义用于返回的接口类型
+export interface TypeResponse {
+  id?: string;
+  billId: string;
+  parentId?: string;
+  parentName?: string;
+  parentIcon?: string;
+  icon?: string;
+  isIncome: number;
+  name: string;
+  isDelete: number;
+  createTime: Date;
+  updateTime: Date;
+  children?: TypeResponse[];
+}
 
 @Entity('flutter_type')
 export class Type {
   @BeforeInsert()
   generateId() {
     if(!this.id) this.id = uuid();
+		if(!this.createTime) this.createTime = new Date();
+		if(!this.updateTime) this.updateTime = new Date();
 		if(!this.isDelete) this.isDelete = 0;
+  }
+
+  @BeforeUpdate()
+  updateDate() {
+    this.updateTime = new Date();
   }
 
   @PrimaryGeneratedColumn("uuid", { name: "id" })

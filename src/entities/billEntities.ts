@@ -1,20 +1,36 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
+	Entity,
+	PrimaryGeneratedColumn,
+	Column,
+	CreateDateColumn,
+	UpdateDateColumn,
+	BeforeInsert,
+	BeforeUpdate,
 } from "typeorm";
+import { uuid } from "uuidv4";
 
 @Entity("flutter_bill")
 export class Bill {
-  @PrimaryGeneratedColumn("uuid", { name: "id" })
+	@BeforeInsert()
+	generateId() {
+		if (!this.id) this.id = uuid();
+		if (!this.createTime) this.createTime = new Date();
+		if (!this.updateTime) this.updateTime = new Date();
+		if (!this.isDelete) this.isDelete = 0;
+	}
+
+	@BeforeUpdate()
+	updateDate() {
+		this.updateTime = new Date();
+	}
+
+	@PrimaryGeneratedColumn("uuid", { name: "id" })
 	id!: string;
 
-  @Column({ name: "user_id", type: "varchar", comment: "用户id" })
+	@Column({ name: "user_id", type: "varchar", comment: "用户id" })
 	userId!: string;
 
-  @Column({
+	@Column({
 		name: "total_asset",
 		type: "decimal",
 		precision: 17,
@@ -24,7 +40,7 @@ export class Bill {
 	})
 	totalAsset?: string;
 
-  @Column({
+	@Column({
 		name: "net_asset",
 		type: "decimal",
 		precision: 17,
@@ -34,7 +50,7 @@ export class Bill {
 	})
 	netAsset?: string;
 
-  @Column({
+	@Column({
 		name: "total_liability",
 		type: "decimal",
 		precision: 17,
@@ -44,7 +60,7 @@ export class Bill {
 	})
 	totalLiability?: string;
 
-  @Column({
+	@Column({
 		name: "monthly_expense",
 		type: "decimal",
 		precision: 17,
@@ -54,7 +70,7 @@ export class Bill {
 	})
 	monthlyExpense?: string;
 
-  @Column({
+	@Column({
 		name: "monthly_income",
 		type: "decimal",
 		precision: 17,
@@ -64,7 +80,7 @@ export class Bill {
 	})
 	monthlyIncome?: string;
 
-  @Column({
+	@Column({
 		name: "monthly_balance",
 		type: "decimal",
 		precision: 17,
@@ -74,7 +90,7 @@ export class Bill {
 	})
 	monthlyBalance?: string;
 
-  @Column({ name: "is_delete", type: "tinyint", comment: "软删除" })
+	@Column({ name: "is_delete", type: "tinyint", comment: "软删除" })
 	isDelete!: number;
 
 	@CreateDateColumn({ name: "create_time", type: "datetime", comment: "创建时间" })

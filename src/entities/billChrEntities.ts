@@ -4,10 +4,26 @@ import {
 	Column,
 	CreateDateColumn,
 	UpdateDateColumn,
+	BeforeInsert,
+	BeforeUpdate,
 } from "typeorm";
+import { uuid } from "uuidv4";
 
 @Entity("flutter_bill_chr")
 export class BillChr {
+	@BeforeInsert()
+	generateId() {
+		if (!this.id) this.id = uuid();
+		if (!this.createTime) this.createTime = new Date();
+		if (!this.updateTime) this.updateTime = new Date();
+		if (!this.isDelete) this.isDelete = 0;
+	}
+
+	@BeforeUpdate()
+	updateDate() {
+		this.updateTime = new Date();
+	}
+
 	@PrimaryGeneratedColumn("uuid", { name: "id" })
 	id!: string;
 
