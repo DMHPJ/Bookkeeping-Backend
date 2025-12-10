@@ -1,84 +1,56 @@
 import { Request, Response } from "express";
-import { AppDataSource } from "../app";
-import { User } from "../entities/userEntities";
-import { PasswordUtils } from "../utils/passwordUtils";
-import { JWTUtils } from "../utils/jwtUtils";
+import { UserService } from "@/services/userService";
 import { AuthenticatedRequest } from "../middleware/authMiddleware";
 import { ResponseUtil } from "@/utils/responseUtil";
-import { uuid } from "uuidv4";
-import { Bill } from "@/entities/billEntities";
 
-const toRegister = async (username: string, password: string) => {
-	try {
-		const userRepo = AppDataSource.getRepository(User);
-		const billRepo = AppDataSource.getRepository(Bill);
-		// 加密密码
-		const hashedPassword = PasswordUtils.hashPassword(password);
+export class UserController {
+	private userService: UserService;
 
-		// 创建新用户
-		const newUser = userRepo.create({
-			id: uuid(),
-			username,
-			password: hashedPassword,
-			nickname: username,
-			isDelete: 0,
-		});
-		const savedUser = await userRepo.save(newUser);
-		// 创建账单主表
-		const newBill = billRepo.create({
-			id: uuid(),
-			userId: savedUser.id,
-			isDelete: 0,
-		});
-		await billRepo.save(newBill);
-
-		// 生成token
-		const token = JWTUtils.generateToken({ id: savedUser.id, username: savedUser.username });
-
-		return ResponseUtil.success({ ...savedUser, token }, "注册成功");
-	} catch (error) {
-		return ResponseUtil.error("注册失败");
+	constructor() {
+		this.userService = new UserService();
 	}
-};
 
-// 登录接口 未注册时自动注册
-export const loginOrRegister = async (req: Request, res: Response) => {
-	const { username, password } = req.body;
-	if (!username || !password) {
-		return res.status(400).json({ success: false, message: "用户名和密码不能为空" });
-	}
-	try {
-		const userRepo = AppDataSource.getRepository(User);
-		const user = await userRepo.findOne({ where: { username } });
-		// 注册
-		if (!user) {
-			const registerRes = await toRegister(username, password);
-			return res.json(registerRes);
-		} else {
-			// 登录
-			const isValid = PasswordUtils.verifyPassword(password, user.password);
-			if (!isValid) return res.json(ResponseUtil.error("密码错误"));
+	/**
+	 * 登录或注册
+	 */
+	loginOrRegister = async (req: Request, res: Response): Promise<void> => {
+		try {
+			const { username, password } = req.body;
 
-			const token = JWTUtils.generateToken({ id: user.id, username: user.username });
-			return res.json(ResponseUtil.success({ ...user, token }, "登录成功"));
+			// 参数验证
+			if (!username || !password) {
+				res.json(ResponseUtil.error("用户名和密码不能为空"));
+				return;
+			}
+
+			// 调用 Service 层
+			const result = await this.userService.loginOrRegister(username, password);
+			res.json(ResponseUtil.success(result, "登录成功"));
+		} catch (error: any) {
+			console.error(error);
+			res.json(ResponseUtil.error(error.message || "登录失败"));
 		}
-	} catch (error) {
-		return res.json(ResponseUtil.error("登录失败"));
 	}
-};
 
-export const getCurrentUser = async (req: AuthenticatedRequest, res: Response) => {
-	try {
-		const userId = req.user?.id;
-		if (!userId) return res.json(ResponseUtil.error("用户未认证"));
+	/**
+	 * 获取当前用户信息
+	 */
+	getCurrentUser = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+		try {
+			const userId = req.user?.id;
 
-		const userRepo = AppDataSource.getRepository(User);
-		const user = await userRepo.findOne({ where: { id: userId } });
+			// 参数验证
+			if (!userId) {
+				res.json(ResponseUtil.error("用户未认证"));
+				return;
+			}
 
-		if (!user) return res.json(ResponseUtil.error("用户不存在"));
-
-		return res.json(ResponseUtil.success(user, "查找成功"));
-	} catch (error) {
-		return res.json(ResponseUtil.error("查找失败"));
+			// 调用 Service 层
+			const user = await this.userService.getCurrentUser(userId);
+			res.json(ResponseUtil.success(user, "查找成功"));
+		} catch (error: any) {
+			console.error(error);
+			res.json(ResponseUtil.error(error.message || "查找失败"));
+		}
 	}
-};
+}

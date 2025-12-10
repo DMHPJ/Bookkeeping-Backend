@@ -4,15 +4,12 @@ import { getTypeRoutes } from './typeRoutes';
 import { getWalletTypeRoutes } from './walletTypeRoutes';
 import { getBillRoutes } from './billRoutes';
 import { getWalletRoutes } from './walletRoutes';
-import { loginOrRegister, getCurrentUser } from '../controllers/userController';
+import { getUserRoutes } from './userRoutes';
 import { authMiddleware } from '../middleware/authMiddleware';
 
 export const routes = (app: Express) => {
-  // 用户认证相关路由 - 不需要认证
-  app.post('/login', loginOrRegister);
-
-  // 需要认证的用户路由
-  app.get('/user/profile', authMiddleware, getCurrentUser);
+  // 用户相关路由
+  app.use('/user', getUserRoutes());
 
   // 需要认证的路由
   // 主账单相关路由
