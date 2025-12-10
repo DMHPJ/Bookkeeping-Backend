@@ -15,4 +15,9 @@ export class BillRepository {
       where: {...params, isDelete: 0},
     });
   }
+
+  save = async (billData: Partial<Bill>): Promise<Bill> => {
+    const bill = this.repository.create(billData);
+    return await this.repository.save(bill);
+  }
 } 

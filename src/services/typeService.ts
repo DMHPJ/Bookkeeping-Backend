@@ -1,5 +1,5 @@
 import { TypeRepository } from "@/repositories/typeRepository";
-import { Type } from "@/entities/typeEntities";
+import { Type, TypeResponse } from "@/entities/typeEntities";
 
 export class TypeService {
 	private typeRepository: TypeRepository;
@@ -8,7 +8,7 @@ export class TypeService {
 		this.typeRepository = new TypeRepository();
 	}
 
-	getTypeList = async (params: any): Promise<Type[]> => {
+	getTypeList = async (params: any): Promise<TypeResponse[]> => {
 		const res = await this.typeRepository.getTypeList(params);
 
 		const parentList = res.filter((item) => !item.parentId);
@@ -29,11 +29,11 @@ export class TypeService {
 		});
 	}
 
-	addType = async (typeData: Partial<Type>): Promise<Type> => {
+	addType = async (typeData: Partial<Type>): Promise<TypeResponse> => {
 		return await this.typeRepository.addType(typeData);
 	}
 
-	updateType = async (typeData: Partial<Type>): Promise<Type | null> => {
+	updateType = async (typeData: Partial<Type>): Promise<TypeResponse | null> => {
 		return await this.typeRepository.updateType(typeData.id!, typeData);
 	}
 }
