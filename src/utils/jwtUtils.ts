@@ -6,6 +6,7 @@ const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '24h';
 export interface JWTPayload {
   id: string;
   username: string;
+  billId: string;
 }
 
 export class JWTUtils {
