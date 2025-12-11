@@ -1,6 +1,6 @@
 {
   "watch": ["src"],
   "ext": "ts",
-  "exec": "export NODE_ENV=dev && ts-node -r tsconfig-paths/register src/index.ts",
+  "exec": "ts-node -r tsconfig-paths/register src/app.ts",
   "ignore": ["./src/public"]
 }
