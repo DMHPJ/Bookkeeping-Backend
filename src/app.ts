@@ -10,11 +10,16 @@ const port = process.env.PORT || 3900;
 // 创建数据库连接
 export const AppDataSource = new DataSource(config);
 
+import { errorHandler } from './middleware/errorHandler';
+
 // 中间件
 app.use(express.json());
 
 // 路由管理
 routes(app);
+
+// 全局错误处理
+app.use(errorHandler);
 
 // 启动服务器
 AppDataSource.initialize()
